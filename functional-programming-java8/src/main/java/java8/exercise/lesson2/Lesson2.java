@@ -1,7 +1,7 @@
 /**
  * Copyright © 2016, Oracle and/or its affiliates. All rights reserved. JDK 8 MOOC Lesson 2 homework
  */
-package lesson2;
+package java8.exercise.lesson2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
