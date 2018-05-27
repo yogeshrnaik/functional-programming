@@ -52,7 +52,9 @@ public class Lesson1Test {
         PrintStream oldOut = System.out;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(baos));
+
         lesson1.exercise5(list);
+
         String result = new String(baos.toByteArray());
         Assert.assertEquals("1\r\n2\r\n3\r\n4\r\n5\r\n", result);
         System.setOut(oldOut);

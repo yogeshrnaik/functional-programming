@@ -1,7 +1,7 @@
 /**
  * Copyright © 2016, Oracle and/or its affiliates. All rights reserved. JDK 8 MOOC Lesson 2 homework
  */
-package java8.exercise.lesson2;
+package java8.exercise.lesson2.solution;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,11 +9,15 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import java8.exercise.lesson2.Lesson2;
 
 /**
  * @author Speakjava (Simon Ritter)
  */
-public class Lesson2 {
+public class Lesson2Solution extends Lesson2 {
 
     private static final String WORD_REGEXP = "[- .:,]+";
 
@@ -22,6 +26,7 @@ public class Lesson2 {
      */
     public void exercise1(List<String> list) {
         /* YOUR CODE HERE */
+        list.stream().map(String::toLowerCase).forEach(System.out::println);
     }
 
     /**
@@ -29,6 +34,7 @@ public class Lesson2 {
      */
     public void exercise2(List<String> list) {
         /* YOUR CODE HERE */
+        list.stream().map(String::toLowerCase).filter(e -> e.length() % 2 != 0).forEach(System.out::println);
     }
 
     /**
@@ -37,7 +43,8 @@ public class Lesson2 {
      */
     public String exercise3(List<String> list) {
         /* YOUR CODE HERE */
-        return null;
+        return list.subList(1, 4).stream().collect(Collectors.joining("-"));
+        // list.subList(1, 4).stream().reduce((s1, s2) -> s1 + "-" + s2).ifPresent(System.out::println);
     }
 
     /**
@@ -45,7 +52,10 @@ public class Lesson2 {
      */
     public long exercise4(String filePath) throws IOException {
         /* YOUR CODE HERE */
-        return 0;
+        try (BufferedReader reader = Files.newBufferedReader(
+            Paths.get(filePath), StandardCharsets.UTF_8)) {
+            return reader.lines().count();
+        }
     }
 
     /**
@@ -58,7 +68,10 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
             Paths.get(filePath), StandardCharsets.UTF_8)) {
 
-            return null;
+            /* YOUR CODE HERE */
+            return reader.lines()
+                .flatMap(e -> Stream.of(e.split(WORD_REGEXP)))
+                .distinct().collect(Collectors.toList());
         }
     }
 
@@ -72,7 +85,11 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
             Paths.get(filePath), StandardCharsets.UTF_8)) {
 
-            return null;
+            /* YOUR CODE HERE */
+            return reader.lines().map(String::toLowerCase)
+                .flatMap(e -> Stream.of(e.split(WORD_REGEXP)))
+                .distinct().sorted()
+                .collect(Collectors.toList());
         }
     }
 
@@ -83,7 +100,12 @@ public class Lesson2 {
         try (BufferedReader reader = Files.newBufferedReader(
             Paths.get(filePath), StandardCharsets.UTF_8)) {
 
-            return null;
+            /* YOUR CODE HERE */
+            return reader.lines().map(String::toLowerCase)
+                .flatMap(e -> Stream.of(e.split(WORD_REGEXP)))
+                .distinct()
+                .sorted((s1, s2) -> s1.length() - s2.length())
+                .collect(Collectors.toList());
         }
     }
 }

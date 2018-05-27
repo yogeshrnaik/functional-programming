@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Lesson1Solution {
+import java8.exercise.lesson1.Lesson1;
+
+public class Lesson1Solution extends Lesson1 {
 
     /**
      * All exercises should be completed using Lambda expressions and the new methods added to JDK 8 where appropriate. <br/>
@@ -17,6 +19,7 @@ public class Lesson1Solution {
     /**
      * Exercise 1 Create a string that consists of the first letter of each word in the list of Strings provided.
      */
+    @Override
     public String exercise1(List<String> list) {
         /* YOUR CODE HERE */
         return list.stream().map(e -> e.substring(0, 1)).collect(Collectors.joining());
@@ -25,6 +28,7 @@ public class Lesson1Solution {
     /**
      * Exercise 2 Remove the words that have odd lengths from the list.
      */
+    @Override
     public List<String> exercise2(List<String> list) {
         /* YOUR CODE HERE */
         list.removeIf(e -> e.length() % 2 != 0);
@@ -34,6 +38,7 @@ public class Lesson1Solution {
     /**
      * Exercise 3 Replace every word in the list with its upper case equivalent.
      */
+    @Override
     public List<String> exercise3(List<String> list) {
         /* YOUR CODE HERE */
         list.replaceAll(String::toUpperCase);
@@ -43,6 +48,7 @@ public class Lesson1Solution {
     /**
      * Exercise 4 Convert every key-value pair of the map into a string and append them all into a single string, in iteration order.
      */
+    @Override
     public String exercise4(Map<String, Integer> map) {
         /* YOUR CODE HERE */
         return map.entrySet().stream().map(e -> e.getKey() + e.getValue()).collect(Collectors.joining(","));
@@ -51,6 +57,7 @@ public class Lesson1Solution {
     /**
      * Exercise 5 Print all items from list on System.out.println()
      */
+    @Override
     public void exercise5(List<Integer> list) {
         /* YOUR CODE HERE */
         list.forEach(System.out::println);
