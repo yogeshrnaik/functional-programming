@@ -29,7 +29,6 @@ public class RandomWords {
     public RandomWords() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/resources/words"))) {
             sourceWords = reader.lines().collect(Collectors.toList()); // YOUR CODE HERE
-
             System.out.println("Loaded " + sourceWords.size() + " words");
         }
     }
@@ -44,8 +43,9 @@ public class RandomWords {
         Random rand = new Random();
 
         // YOUR CODE HERE
-        List<String> wordList = rand.ints(listSize, 0, sourceWords.size()).mapToObj(i -> sourceWords.get(i)).collect(Collectors.toList());
-        return wordList;
+        return rand.ints(listSize, 0, sourceWords.size())
+            .mapToObj(i -> sourceWords.get(i))
+            .collect(Collectors.toList());
     }
 
     /**

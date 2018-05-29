@@ -23,6 +23,7 @@ public class DeclarativeCount {
             incrementLanguageCount(languageCounts, languge);
         }
         System.out.println(languageCounts);
+
     }
 
     private static void incrementLanguageCount(Map<String, Integer> languageCounts, String languge) {
@@ -35,7 +36,8 @@ public class DeclarativeCount {
 
         System.out.println(languageCounts);
 
-        languageCounts = languages.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        languageCounts = languages.stream()
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         System.out.println(languageCounts);
     }
 
