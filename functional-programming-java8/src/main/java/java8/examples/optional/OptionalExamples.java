@@ -24,31 +24,31 @@ public class OptionalExamples {
     }
 
     private static void printOptional(Optional<Object> optionalOfX) {
-        optionalOfX.ifPresent(OptionalExamples::print);
+        optionalOfX.ifPresent(System.out::println);
     }
 
     private static void filterAndPrint(String x) {
         if (x != null && x.contains("a")) {
-            print(x);
+            System.out.println(x);
         }
     }
 
     private static void filterAndPrintOptional(Optional<String> optionalOfX) {
-        optionalOfX.filter(x -> x.contains("a")).ifPresent(OptionalExamples::print);
+        optionalOfX.filter(x -> x.contains("a")).ifPresent(System.out::print);
     }
 
     private static void mapAndPrint(String x) {
         if (x != null) {
             String t = x.trim();
             if (t.length() > 0)
-                print(t);
+                System.out.println(t);
         }
     }
 
     private static void mapAndPrintOptional(Optional<String> optionalOfX) {
         optionalOfX.map(String::trim)
             .filter(t -> t.length() > 0)
-            .ifPresent(OptionalExamples::print);
+            .ifPresent(System.out::print);
     }
 }
 

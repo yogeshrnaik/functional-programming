@@ -12,15 +12,9 @@ import io.vavr.collection.Stream;
 
 public class CafePureFunctionalExample {
 
-    public Coffee buyCoffee(CreditCard cc) {
-        Coffee cup = new Coffee(50.0);
-        cc.charge(cup.price);
-        return cup;
-    }
-
     public Coffee buyCoffee(CreditCard cc, Payments p) {
         Coffee cup = new Coffee(50.0);
-        p.charge(cup.price);
+        p.charge(cc, cup.price); // calls external service
         return cup;
     }
 
@@ -57,7 +51,7 @@ class CreditCard {
 
 class Payments {
 
-    public void charge(double price) {
+    public void charge(CreditCard cc, double price) {
     }
 }
 
@@ -78,7 +72,7 @@ class Charge {
             throw new RuntimeException("Can't combine charges to different cards");
     }
 
-    public Map<CreditCard, List<Charge>> groupByCreditCard(List<Charge> charges) {
+    public static Map<CreditCard, List<Charge>> groupByCreditCard(List<Charge> charges) {
         return charges.stream().collect(groupingBy(c -> c.card, toList()));
     }
 }
