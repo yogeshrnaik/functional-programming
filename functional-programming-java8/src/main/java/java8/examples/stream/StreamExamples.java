@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 public class StreamExamples {
 
     public static void main(String[] args) {
-        Stream<Integer> nums = Stream.of(1, 2, 3, 4, 5);
+        Stream<Integer> nums = Stream.of(1, 1, 1, 4, 5, 6);
 
         Stream<Integer> evens = nums.filter(StreamExamples::isEven);
         // Optional<Integer> firstEven = evens.findFirst();
