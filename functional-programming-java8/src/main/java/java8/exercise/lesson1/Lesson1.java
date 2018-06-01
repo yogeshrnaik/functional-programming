@@ -38,7 +38,8 @@ public class Lesson1 {
     }
 
     /**
-     * Exercise 4 Convert every key-value pair of the map into a string and append them all into a single string, in iteration order.
+     * Exercise 4 Convert every key-value pair of the map into a string </br>
+     * and append them all into a single string using comma, in iteration order.
      */
     public String exercise4(Map<String, Integer> map) {
         /* YOUR CODE HERE */
