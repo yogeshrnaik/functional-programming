@@ -27,13 +27,13 @@ public class DeclarativeCount {
     }
 
     private static void incrementLanguageCount(Map<String, Integer> languageCounts, String languge) {
-        languageCounts.merge(languge, 1, (oldValue, value) -> oldValue + value);
+        languageCounts.merge(languge, 1,
+            (oldValue, value) -> oldValue + value);
     }
 
     private static void countLanguagesWithStream(List<String> languages) {
         Map<String, Long> languageCounts = languages.stream()
             .collect(Collectors.groupingBy(lang -> lang, Collectors.counting()));
-
         System.out.println(languageCounts);
 
         languageCounts = languages.stream()

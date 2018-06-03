@@ -13,10 +13,10 @@ public class MapExamples {
         Thread.sleep(2000);
 
         System.out.println("Timestamp for Java8 : " + getTimestamp(creationTimestamps, "Java8"));
-        System.out.println("Timestamp for Java8 : " + getTimestampIfPresent(creationTimestamps, "Java8"));
+        System.out.println("Timestamp for Java8 : " + getTimestampAndPutIfAbsent(creationTimestamps, "Java8"));
         System.out.println("***********************************************************");
         System.out.println("Timestamp for Java7 : " + getTimestamp(creationTimestamps, "Java7"));
-        System.out.println("Timestamp for Java7 : " + getTimestampIfPresent(creationTimestamps, "Java7"));
+        System.out.println("Timestamp for Java7 : " + getTimestampAndPutIfAbsent(creationTimestamps, "Java7"));
     }
 
     private static long getTimestamp(Map<String, Long> languageCounts, String language) {
@@ -26,7 +26,7 @@ public class MapExamples {
         return languageCounts.get(language);
     }
 
-    private static long getTimestampIfPresent(Map<String, Long> languageCounts, String language) {
+    private static long getTimestampAndPutIfAbsent(Map<String, Long> languageCounts, String language) {
         return languageCounts.putIfAbsent(language, Instant.now().toEpochMilli());
     }
 }

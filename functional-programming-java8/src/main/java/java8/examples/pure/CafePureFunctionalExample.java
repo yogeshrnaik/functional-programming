@@ -12,9 +12,9 @@ import io.vavr.collection.Stream;
 
 public class CafePureFunctionalExample {
 
-    public Coffee buyCoffee(CreditCard cc, Payments p) {
+    public Coffee buyCoffee(CreditCard cc, PaymentGateway pg) {
         Coffee cup = new Coffee(50.0);
-        p.charge(cc, cup.price); // calls external service
+        pg.charge(cc, cup.price); // calls external service
         return cup;
     }
 
@@ -24,8 +24,12 @@ public class CafePureFunctionalExample {
     }
 
     public Tuple2<List<Coffee>, Charge> buyCoffees(CreditCard cc, int noOfCoffees) {
-        Stream<Tuple2<Coffee, Charge>> purchases = Stream.fill(noOfCoffees, () -> buyCoffeeFunctional(cc));
-        Tuple2<Stream<Coffee>, Stream<Charge>> unzip = purchases.unzip(t -> new Tuple2<>(t._1, t._2));
+        Stream<Tuple2<Coffee, Charge>> purchases =
+            Stream.fill(noOfCoffees, () -> buyCoffeeFunctional(cc));
+
+        Tuple2<Stream<Coffee>, Stream<Charge>> unzip =
+            purchases.unzip(t -> new Tuple2<>(t._1, t._2));
+
         return new Tuple2<List<Coffee>, Charge>(
             unzip._1.collect(Collectors.toList()),
             unzip._2.reduce((c1, c2) -> c1.combine(c2)));
@@ -39,17 +43,15 @@ class Coffee {
     public Coffee(double p) {
         price = p;
     }
-
 }
 
 class CreditCard {
 
     public void charge(double price) {
-
     }
 }
 
-class Payments {
+class PaymentGateway {
 
     public void charge(CreditCard cc, double price) {
     }

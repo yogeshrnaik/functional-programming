@@ -15,7 +15,6 @@ public class ImperativeCount {
 
     private static void countLanguages(List<String> languages) {
         Map<String, Integer> languageCounts = new HashMap<>();
-
         for (String languge : languages) {
             incrementLanguageCount(languageCounts, languge);
         }

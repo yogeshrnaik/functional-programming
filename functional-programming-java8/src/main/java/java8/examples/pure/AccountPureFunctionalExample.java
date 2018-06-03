@@ -10,6 +10,13 @@ public class AccountPureFunctionalExample {
         pureWithdrawExample();
     }
 
+    private static void impureDepositeExample() {
+        Account acc = new Account(1000);
+        System.out.println("Balance before depositing: " + acc.balance);
+        acc.deposit(500);
+        System.out.println("Balance after depositing: " + acc.balance);
+    }
+
     private static void pureWithdrawExample() {
         System.out.println("******************** Pure Function - Withdraw ***************** ");
         AccountPure currAcct = new AccountPure(1000);
@@ -21,19 +28,13 @@ public class AccountPureFunctionalExample {
         System.out.println(balance);
     }
 
-    private static void impureDepositeExample() {
-        Account acc = new Account(1000);
-        System.out.println(acc.balance);
-        acc.deposit(500);
-        System.out.println(acc.balance);
-    }
-
     private static void pureDepositExample() {
         System.out.println("******************** Pure Function - Deposit ***************** ");
         AccountPure currAcct = new AccountPure(1000);
+        System.out.println("Balance before depositing: " + currAcct.balance);
         AccountPure newAccState = currAcct.deposit(500);
-        System.out.println(currAcct.balance);
-        System.out.println(newAccState.balance);
+        System.out.println("Old Balance after depositing: " + currAcct.balance);
+        System.out.println("New Balance after depositing: " + newAccState.balance);
     }
 }
 
@@ -53,7 +54,7 @@ class Account {
 
 class AccountPure {
 
-    double balance;
+    final double balance;
 
     public AccountPure(double balance) {
         this.balance = balance;

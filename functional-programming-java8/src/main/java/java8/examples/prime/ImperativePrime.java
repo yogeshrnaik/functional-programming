@@ -4,7 +4,10 @@ public class ImperativePrime {
 
     public static void main(String[] args) {
         for (int i = 1; i <= 100; i++) {
-            System.out.println(String.format("isPrime(%d) -> %s", i, isPrime(i)));
+            boolean isPrime = isPrime(i);
+            if (isPrime) {
+                System.out.println(i);
+            }
         }
     }
 

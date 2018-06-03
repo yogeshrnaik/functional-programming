@@ -5,9 +5,15 @@ import java.util.stream.IntStream;
 public class DeclarativePrime {
 
     public static void main(String[] args) {
-        for (int i = 1; i <= 100; i++) {
-            System.out.println(String.format("isPrime(%d) -> %s", i, isPrime(i)));
-        }
+        IntStream.rangeClosed(1, 100)
+            .filter(i -> isPrime(i))
+            .forEach(i -> System.out.println(i));
+
+        System.out.println("*******************************************");
+
+        IntStream.rangeClosed(1, 100)
+            .filter(DeclarativePrime::isPrime)
+            .forEach(System.out::println);
     }
 
     public static boolean isPrime(int number) {
