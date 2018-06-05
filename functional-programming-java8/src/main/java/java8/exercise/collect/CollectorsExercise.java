@@ -15,6 +15,15 @@ public class CollectorsExercise {
     }
 
     /**
+     * Count the number of words by length <br/>
+     * Given list of words, return a a map that uses length of a word as key and <br/>
+     * value = number of words found having same length as key
+     */
+    public Map<Integer, Long> countWordsByLength(List<String> words) {
+        return new HashMap<>();
+    }
+
+    /**
      * Convert a list of Persons into a map that uses Person's City as key and Person's name as value <br/>
      * In case of multiple persons from same city, put them in a set<br/>
      */

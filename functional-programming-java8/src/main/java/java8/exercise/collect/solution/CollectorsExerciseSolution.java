@@ -21,6 +21,16 @@ public class CollectorsExerciseSolution extends CollectorsExercise {
     }
 
     /**
+     * Convert a list of strings into a map that uses length of a word as key and <br/>
+     * value = number of words found having same length as key
+     */
+    @Override
+    public Map<Integer, Long> countWordsByLength(List<String> words) {
+        return words.stream().collect(
+            Collectors.groupingBy(String::length, Collectors.counting()));
+    }
+
+    /**
      * Convert a list of Persons into a map that uses Person's City as key and Person's name as value <br/>
      * In case of multiple persons from same city, put them in a set<br/>
      */

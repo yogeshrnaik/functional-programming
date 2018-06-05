@@ -35,6 +35,17 @@ public class CollectorsExerciseTest {
     }
 
     @Test
+    public void testCountWordsByLength() {
+        List<String> words = Arrays.asList("a", "aa", "bb", "ccc", "ddd", "eeee");
+        Map<Integer, Long> result = exercise.countWordsByLength(words);
+        // {1=1, 2=2, 3=2, 4=1}
+        assertEquals(1, result.get(1).intValue());
+        assertEquals(2, result.get(2).intValue());
+        assertEquals(2, result.get(3).intValue());
+        assertEquals(1, result.get(4).intValue());
+    }
+
+    @Test
     public void testGroupOccupantsByCity() {
         Map<String, Set<String>> result = exercise.groupOccupantsByCity(LIST_OF_PERSONS);
 
