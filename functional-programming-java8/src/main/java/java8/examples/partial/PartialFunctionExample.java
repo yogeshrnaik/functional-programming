@@ -12,7 +12,7 @@ public class PartialFunctionExample {
 
     private static void divideByZero() {
         Function2<Integer, Integer, Integer> divide = (a, b) -> a / b;
-        divide.apply(1).apply(0);
+        divide.apply(1, 0);
 
         Function2<Integer, Integer, Option<Integer>> safeDivide = Function2.lift(divide);
 
