@@ -18,14 +18,14 @@ public class CafePureFunctionalExample {
         return cup;
     }
 
-    public Tuple2<Coffee, Charge> buyCoffeeFunctional(CreditCard cc) {
-        Coffee cup = new Coffee(50.0);
+    public Tuple2<Coffee, Charge> buyCoffeeFunctional(CreditCard cc, double pricePerCup) {
+        Coffee cup = new Coffee(pricePerCup);
         return new Tuple2<>(cup, new Charge(cc, cup.price));
     }
 
     public Tuple2<List<Coffee>, Charge> buyCoffees(CreditCard cc, int noOfCoffees) {
         Stream<Tuple2<Coffee, Charge>> purchases =
-            Stream.fill(noOfCoffees, () -> buyCoffeeFunctional(cc));
+            Stream.fill(noOfCoffees, () -> buyCoffeeFunctional(cc, 50.0));
 
         Tuple2<Stream<Coffee>, Stream<Charge>> unzip =
             purchases.unzip(t -> new Tuple2<>(t._1, t._2));
