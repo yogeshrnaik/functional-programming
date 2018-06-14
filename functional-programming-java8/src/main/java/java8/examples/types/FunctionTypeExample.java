@@ -4,6 +4,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class FunctionTypeExample {
 
@@ -11,6 +12,8 @@ public class FunctionTypeExample {
         System.out.println("********** doubleIt **********");
         Function<Integer, Integer> doubleIt = num -> num * 2;
         System.out.println(doubleIt.apply(10));
+
+        Supplier<Boolean> alwaysSayYes = () -> true;
 
         System.out.println("********** predicates **********");
         Function<String, Boolean> isJava = lang -> lang.startsWith("Java");
